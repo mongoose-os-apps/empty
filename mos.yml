@@ -2,6 +2,9 @@ author: mongoose-os
 description: An empty app that does nothing
 version: 1.0
 
+libs_version: ${mos_version}
+mongoose_os_version: ${mos_version}
+
 # Optional. List of tags for online search.
 tags:
   - c
