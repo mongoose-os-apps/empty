@@ -20,10 +20,27 @@ filesystem:
 
 # Custom configuration entries, settable via "device configuration"
 config_schema:
+# Below is a custom firmware configuration example.
+# Uncomment and modify according to your needs.
+# These settings get compiled into the C structure, and can be accessed
+# from the C code this way:
+#
+# printf("Hello from %s!\n", get_cfg()->device.id);
+#
+# Settings are cool: can be modified remotely without full firmware upgrade!
+#
+# To see all available compiled settings, buid the firmware and open
+# build/gen/sys_config.c or build/gen/sys_config.h file.
+#
 #  - ["my_app", "o", {title: "My app custom settings"}]
 #  - ["my_app.bool_value", "b", false, {title: "Some boolean value"}]
 #  - ["my_app.string_value", "s", "", {title: "Some string value"}]
 #  - ["my_app.int_value", "i", 123, {title: "Some integer value"}]
+#
+# Also, you can override existing values:
+#
+#  - ["wifi.sta.ssid", "my_ssid"]
+#  - ["wifi.sta.pass", "my_pass"]
 
 # List of libraries used by this app, in order of initialisation
 libs:
