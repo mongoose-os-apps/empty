@@ -19,9 +19,15 @@ filesystem:
   - fs
 
 # Custom configuration entries, settable via "device configuration"
-config_schema:
 # Below is a custom firmware configuration example.
-# Uncomment and modify according to your needs.
+# Uncomment and modify according to your needs:
+
+# config_schema:
+#  - ["my_app", "o", {title: "My app custom settings"}]
+#  - ["my_app.bool_value", "b", false, {title: "Some boolean value"}]
+#  - ["my_app.string_value", "s", "", {title: "Some string value"}]
+#  - ["my_app.int_value", "i", 123, {title: "Some integer value"}]
+
 # These settings get compiled into the C structure, and can be accessed
 # from the C code this way:
 #
@@ -32,15 +38,13 @@ config_schema:
 # To see all available compiled settings, buid the firmware and open
 # build/gen/sys_config.c or build/gen/sys_config.h file.
 #
-#  - ["my_app", "o", {title: "My app custom settings"}]
-#  - ["my_app.bool_value", "b", false, {title: "Some boolean value"}]
-#  - ["my_app.string_value", "s", "", {title: "Some string value"}]
-#  - ["my_app.int_value", "i", 123, {title: "Some integer value"}]
+# Also, in this config_schema section, you can override existing
+# settings that has been created by other libraries. For example, debug log
+# level is 2 by default. For this firmware we can override it to 3:
 #
-# Also, you can override existing values:
-#
-#  - ["wifi.sta.ssid", "my_ssid"]
-#  - ["wifi.sta.pass", "my_pass"]
+# config_schema:
+#  - ["debug.level", 3]
+
 
 # List of libraries used by this app, in order of initialisation
 libs:
