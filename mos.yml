@@ -1,6 +1,5 @@
-name: mjs-latest
 author: mongoose-os
-description: An empty app that does nothing
+description: A Mongoose OS app skeleton
 version: 1.0
 
 libs_version: ${mos.version}
