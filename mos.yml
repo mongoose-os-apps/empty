@@ -31,12 +31,12 @@ filesystem:
 # These settings get compiled into the C structure, and can be accessed
 # from the C code this way:
 #
-# printf("Hello from %s!\n", get_cfg()->device.id);
+# printf("Hello from %s!\n", mgos_sys_config_get_device_id());
 #
 # Settings are cool: can be modified remotely without full firmware upgrade!
 #
 # To see all available compiled settings, buid the firmware and open
-# build/gen/sys_config.c or build/gen/sys_config.h file.
+# build/gen/mgos_config.h file.
 #
 # Also, in this config_schema section, you can override existing
 # settings that has been created by other libraries. For example, debug log
