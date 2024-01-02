@@ -18,22 +18,24 @@
 #include "mgos.h"
 
 static void timer_cb(void *arg) {
-  static bool s_tick_tock = false;
-  LOG(LL_INFO,
-      ("%s uptime: %.2lf, RAM: %lu, %lu free", (s_tick_tock ? "Tick" : "Tock"),
-       mgos_uptime(), (unsigned long) mgos_get_heap_size(),
-       (unsigned long) mgos_get_free_heap_size()));
-  s_tick_tock = !s_tick_tock;
-#ifdef LED_PIN
-  mgos_gpio_toggle(LED_PIN);
-#endif
+  mgos_gpio_toggle(14);
+  mgos_gpio_toggle(13);
+  mgos_gpio_toggle(12);
+  mgos_gpio_toggle(15);
+  LOG(LL_INFO,("INPUT: %d, %d, %d, %d",mgos_gpio_read(5),mgos_gpio_read(4),mgos_gpio_read(0),mgos_gpio_read(16)));
   (void) arg;
 }
 
 enum mgos_app_init_result mgos_app_init(void) {
-#ifdef LED_PIN
-  mgos_gpio_setup_output(LED_PIN, 0);
-#endif
+  /* 创建输入输出IO管理 */
+  mgos_gpio_setup_output(14, 0);
+  mgos_gpio_setup_output(12, 0);
+  mgos_gpio_setup_output(13, 1);
+  mgos_gpio_setup_output(15, 1);
+  mgos_gpio_setup_input(5, 1);
+  mgos_gpio_setup_input(4, 1);
+  mgos_gpio_setup_input(0, 1);
+  mgos_gpio_setup_input(16, 1);
   mgos_set_timer(1000 /* ms */, MGOS_TIMER_REPEAT, timer_cb, NULL);
   return MGOS_APP_INIT_SUCCESS;
 }
